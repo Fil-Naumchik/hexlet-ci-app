@@ -13,6 +13,6 @@ test:
 	npm test
 
 lint:
-	npx eslint .
+	npx eslint@8.x .
 
 .PHONY: build
