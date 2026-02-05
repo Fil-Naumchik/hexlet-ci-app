@@ -10,7 +10,14 @@ start:
 	npm start
 
 test:
-	npm test
+	@echo "Running tests..."
+	@if [ -f node_modules/.bin/jest ]; then \
+		JWT_SECRET=secret ./node_modules/.bin/jest --forceExit --detectOpenHandles; \
+	else \
+		echo "Jest not found, installing..."; \
+		npm install --no-save jest supertest; \
+		JWT_SECRET=secret npx jest --forceExit --detectOpenHandles; \
+	fi
 
 lint:
 	@echo "Running ESLint..."
